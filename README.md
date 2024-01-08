@@ -8,6 +8,7 @@ Copy this Repo into you SD card, put it into your RG35XX+ and activate SSH to ge
   * [Motivation](#motivation)
   * [How to SSH on RG35XX+](#how-to-ssh-on-rg35xx-)
     + [Connect Wifi](#connect-wifi)
+    + [inject root password](#inject-new-root-password)
     + [install ssh server](#install-ssh-server)
     + [troubleshout](#troubleshout)
     + [change language via ssh](#change-language-via-ssh)
@@ -34,9 +35,18 @@ select unchained_1_connect_wifi
 ```
 This script is optionally and only needed for users of the day one version, where you can only put 36 characters into the systems wifi ui. A working internet connection is crucial to activate ssh later. Edit this file and put your wifi credentials there. Enable Wifi before running.
 
+### Inject new root password
+ ```
+ select unchained_2_change_root_passwd
+ ```
+ This script changes the system file that stores the passwords. Unfortunetly i was not able to get the original password so i created a new password that can be injected into the system. I found several sources claiming you could use root:root or game:game and for me it seems that for some it works, for others it doesnt. I keep that script here, because for me it seems that different stock images might use different passwords and having that script in the toolbelt is always good, so that you could reset the password if needed.
+
+ The new password is 'admin'. If you want to change it, use passwd later via ssh. I rebooted here, but honestly im not sure if this is needed.
+
+
 ### install ssh server
 ```
-select unchained_2_install_ssh
+select unchained_3_install_ssh
 ```
 This script requires internet to download new packages. It will download openssh-server and copy a proper settings file that allows root login via ssh. Also it updates the system set time, i need to do it weirdly because `ntpdate` is not found.
 
@@ -44,11 +54,11 @@ Check your systems wifi ui and use the IP Address displayed there to login to yo
 ```
 ssh root@192.168.x.x
 ```
-use 'root' as password. you should be logged in now. (older versions of the script might have changed the password to 'admin')
+use default password or 'admin' when set with [inject root password](#inject-new-root-password). you should be logged in now.
 
 ### troubleshout
 ```
-run unchained_3_export_debug_info
+run unchained_4_export_debug_info
 ```
 Troubleshouting is quite hard because a running script cant ouput errors visually. In case you have troubles check the log files (you will find them in the UNCHAINED folder). Make sure you are connected to the internet and that the user running the scripts is root. When executing a script you wont see any output visualy but only the Anbernic Boot Screen or even an entirely black screen. Thats ok. The scripts create logfiles for troubleshooting, please be aware that you need to shutdown the handheld properly to make the device flush its write buffer for SD cards. In case you just eject the sd card too early or while the device is running you might experience write loss and no file is created.
 

@@ -13,7 +13,7 @@ apt-get install -y openssh-server >> $log 2>&1
 systemctl enable ssh --now >> $log 2>&1
 systemctl status ssh >> $log 2>&1
 
-cp $progdir/etc/ssh/sshd_config /etc/ssh/sshd_config 
+cp $progdir/UNCHAINED/etc/ssh/sshd_config /etc/ssh/sshd_config 
 
 addgroup --system sshusers >> $log 2>&1
 adduser root sshusers >> $log 2>&1
