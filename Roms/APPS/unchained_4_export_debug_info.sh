@@ -1,0 +1,17 @@
+#!/bin/sh
+echo $0 $*
+progdir=`dirname "$0"`
+log=$progdir/UNCHAINED/debug.txt
+
+touch $log
+
+#Make sure this script is running as root.
+whoami > $log 2>&1 
+$progdir >> $log 2>&1 
+
+cat /etc/default/locale >> $log 2>&1
+
+uname -a  >> $log 2>&1
+
+$progdir/UNCHAINED/bin/binArm32HFp >> $log 2>&1
+$progdir/UNCHAINED/bin/binArm64 >> $log 2>&1
