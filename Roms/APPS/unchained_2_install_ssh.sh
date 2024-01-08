@@ -19,3 +19,6 @@ addgroup --system sshusers >> $log 2>&1
 adduser root sshusers >> $log 2>&1
 
 service ssh restart >> $log 2>&1
+
+# Update Time
+date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f5-8)Z"

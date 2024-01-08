@@ -35,25 +35,17 @@ select unchained_1_connect_wifi
 ```
 This script is optionally and only needed for users of the day one version, where you can only put 36 characters into the systems wifi ui. A working internet connection is crucial to activate ssh later. Edit this file and put your wifi credentials there. Enable Wifi before running.
 
-### Inject new root password
-```
-select unchained_2_change_root_passwd
-```
-This script changes the system file that stores the passwords. Unfortunetly i was not able to get the original password so i created a new file that can be injected into the system.
-
-The new password is 'admin'. If you want to change it, use passwd later via ssh. I rebooted here, but honestly im not sure if this is needed.
-
 ### install ssh server
 ```
-select unchained_3_install_ssh
+select unchained_2_install_ssh
 ```
-This script requires internet to download new packages. It will download openssh-server and copy a proper settings file that allows root login via ssh.
+This script requires internet to download new packages. It will download openssh-server and copy a proper settings file that allows root login via ssh. Also it updates the system set time, i need to do it weirdly because `ntpdate` is not found.
 
 Check your systems wifi ui and use the IP Address displayed there to login to your RG35XX+ via ssh.
 ```
 ssh root@192.168.x.x
 ```
-use 'admin' as password. you should be logged in now.
+use 'root' as password. you should be logged in now. (older versions of the script might have changed the password to 'admin')
 
 ### troubleshout
 ```
@@ -126,14 +118,15 @@ Any file not found error indicates an error in the setup. /lib/ld-linux-aarch64.
 ### known issues
 the sudo command does not work. as everything is executed as root anyways, i didnt care to fix it :)
 
-Ff you put the files into TF1 use /mnt/mmc/... instead of /mnt/sdcard for TF2
+For Steps [change language via ssh](#change-language-via-ssh) and [enable 64 bit via ssh](#enable-64-bit-via-ssh) : If you put the files into TF1 use /mnt/mmc/... instead of /mnt/sdcard/..., which is for TF2.
 
-Put your Device onto a power plug while using ssh and set display always on, else the display might turn of because of inactivity and you will loose the connection.
+Put your Device onto a power plug while using ssh and set display always on, else the display might turn off because of inactivity and you will loose the connection.
+
+To make the Java JDK run i also needed to execute `aptitude install zlib1g:arm64`. (Cross Compile not possible, so i need to compile Native Java Applications on that RG35XX+ :sunglasses: ). But because of this, i am not sure if the steps described in [enable 64 bit via ssh](#enable-64-bit-via-ssh) are sufficient.
 
 ## whats next
-I plan to simplify the scripts, so that they all can run automatically with a single action. I am not an Ubuntu experts, so it might take a while but ultimativelly i want to merge all provided steps into 1.
+I plan to simplify the scripts, so that they all can run automatically with a single action. I am not an Ubuntu expert, so it might take a while but ultimativelly i want to merge all provided steps into 1.
 
-- change root password
 - install ssh
 - change system language to english
 - install arm64 capabilities
