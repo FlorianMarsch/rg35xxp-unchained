@@ -8,7 +8,6 @@ Copy this Repo into you SD card, put it into your RG35XX+ and activate SSH to ge
   * [Motivation](#motivation)
   * [How to SSH on RG35XX+](#how-to-ssh-on-rg35xx-)
     + [Connect Wifi](#connect-wifi)
-    + [Inject new root password](#inject-new-root-password)
     + [install ssh server](#install-ssh-server)
     + [troubleshout](#troubleshout)
     + [change language via ssh](#change-language-via-ssh)
@@ -49,7 +48,7 @@ use 'root' as password. you should be logged in now. (older versions of the scri
 
 ### troubleshout
 ```
-run unchained_4_export_debug_info
+run unchained_3_export_debug_info
 ```
 Troubleshouting is quite hard because a running script cant ouput errors visually. In case you have troubles check the log files (you will find them in the UNCHAINED folder). Make sure you are connected to the internet and that the user running the scripts is root. When executing a script you wont see any output visualy but only the Anbernic Boot Screen or even an entirely black screen. Thats ok. The scripts create logfiles for troubleshooting, please be aware that you need to shutdown the handheld properly to make the device flush its write buffer for SD cards. In case you just eject the sd card too early or while the device is running you might experience write loss and no file is created.
 
