@@ -17,6 +17,7 @@ cp $progdir/UNCHAINED/etc/ssh/sshd_config /etc/ssh/sshd_config
 
 addgroup --system sshusers >> $log 2>&1
 adduser root sshusers >> $log 2>&1
+adduser game sshusers >> $log 2>&1
 
 service ssh restart >> $log 2>&1
 

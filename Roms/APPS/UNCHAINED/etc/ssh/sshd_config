@@ -123,6 +123,6 @@ Subsystem	sftp	/usr/lib/openssh/sftp-server
 
 PasswordAuthentication yes
 PermitRootLogin yes
-AllowUsers root admin
+AllowUsers root game
 AllowGroups sshusers
 StrictModes no
