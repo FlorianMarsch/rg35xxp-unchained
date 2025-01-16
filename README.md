@@ -6,7 +6,7 @@ Copy this repo into you SD card, put it into your RG35XX+ and activate SSH to ge
 - [RG35XX+ Unchained](#rg35xx--unchained)
   * [TL:DR;](#tl-dr-)
   * [How to SSH on RG35XX+](#how-to-ssh-on-rg35xx-)
-    + [Connect WiFi](#connect-wifi)
+    + [Connect WiFi](#connect-wifi-optional)
     + [Install ssh server](#install-ssh-server)
     + [Troubleshout](#troubleshout)
     + [Change language via ssh](#change-language-via-ssh)
